@@ -12,6 +12,6 @@ facilitate this.
 
 Open connection -> Single CRUD operation -> Close connection.
 
-[Documentation](http://github.com/data-avail/baio-mongo)
+[Documentation](http://data-avail.github.com/baio-mongo/)
 
 See also tests.
