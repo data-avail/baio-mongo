@@ -1,0 +1,20 @@
+{ "name": "baio-mongo"
+    , "description": "Little helper library for native nodejs mongodb driver"
+    , "version": "0.0.2"
+    , "url": "http://github.com/data-avail/baio-mongo"
+    , "author": "Max Putilov <max.putilov@gmail.com>"
+    ,"keywords": [
+        "mongodb", "mongo"
+    ]
+    , "engines": ["node >= 0.4.0"]
+    , "main": "./mongo.js"
+    , "dependencies": {
+        "mongodb": "latest",
+         "async": "latest",
+         "underscore": "latest",
+         "should" : "latest"}
+    , "repository": {
+    "type" : "git"
+    , "url" : "git://github.com/data-avail/baio-mongo"
+}
+}
