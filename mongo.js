@@ -101,7 +101,7 @@
 
   updateById = function(table, id, item, isJustFields, done) {
     var params;
-    params = _muteParams2(isItemOper, done);
+    params = _muteParams2(isJustFields, done);
     return async.waterfall([
       function(ck) {
         return open(table, ck);
@@ -131,7 +131,7 @@
       _results = [];
       for (_i = 0, _len = items.length; _i < _len; _i++) {
         item = items[_i];
-        item.id = item._id.toHexstring();
+        item.id = item._id.toHexString();
         _results.push(delete item._id);
       }
       return _results;

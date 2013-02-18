@@ -1,6 +1,8 @@
 mongo = require "./mongo"
 should = require "should"
-config = require("../config").config.mongo
+
+config =
+    uri : "mongodb://adm:123@ds051067.mongolab.com:51067/stage"
 
 describe "mongo basic operations without config", ->
 
@@ -10,7 +12,6 @@ describe "mongo basic operations without config", ->
       mongo.insert "test", item, (err) ->
         err.message.should.equal "config not initialized"
         done()
-
 
 describe "mongo basic operations", ->
 
@@ -50,14 +51,14 @@ describe "mongo basic operations", ->
       res.should.have.keys "_id", "name", "pass"
       res.name.should.equal "baio"
       res.pass.should.equal "xxx"
-      mongo.updateById "test", res._id.toHexString(), {new_field : true}, false, (err) ->
+      mongo.updateById "test", res._id.toHexString(), {new_field : true}, true, (err) ->
         should.not.exist err
         mongo.getById "test", res._id.toHexString(), {pass : 1, new_field : 1}, false, (err, res) ->
           should.not.exist err
           res.should.have.keys "_id", "pass", "new_field"
           res.pass.should.equal "xxx"
           res.new_field.should.equal true
-          mongo.updateById "test", res._id.toHexString(), {$unset : {new_field : 1}}, true, (err) ->
+          mongo.updateById "test", res._id.toHexString(), {$unset : {new_field : 1}}, false, (err) ->
             should.not.exist err
             done()
 

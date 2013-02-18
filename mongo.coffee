@@ -171,7 +171,7 @@ removeById = (table, id, done) ->
 # if this parameter is just set of fields to upadte then this field should be `true` or `missed`.
 #* `done {function(err)}` - callback function
 updateById = (table, id, item, isJustFields, done) ->
-  params = _muteParams2 isItemOper, done
+  params = _muteParams2 isJustFields, done
   async.waterfall [
     (ck) ->
       open table, ck
@@ -187,7 +187,7 @@ _mapItems = (err, autoMap, items) ->
   if !err and autoMap
     items = [items] if !_.isArray items
     for item in items
-      item.id = item._id.toHexstring()
+      item.id = item._id.toHexString()
       delete item._id
 
 _muteParams2 = (opts, callback) =>

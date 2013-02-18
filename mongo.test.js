@@ -6,7 +6,9 @@
 
   should = require("should");
 
-  config = require("../config").config.mongo;
+  config = {
+    uri: "mongodb://adm:123@ds051067.mongolab.com:51067/stage"
+  };
 
   describe("mongo basic operations without config", function() {
     return describe("insert item", function() {
@@ -83,7 +85,7 @@
         res.pass.should.equal("xxx");
         return mongo.updateById("test", res._id.toHexString(), {
           new_field: true
-        }, false, function(err) {
+        }, true, function(err) {
           should.not.exist(err);
           return mongo.getById("test", res._id.toHexString(), {
             pass: 1,
@@ -97,7 +99,7 @@
               $unset: {
                 new_field: 1
               }
-            }, true, function(err) {
+            }, false, function(err) {
               should.not.exist(err);
               return done();
             });
