@@ -247,6 +247,18 @@
         return done();
       });
     });
+    it("get / updateById with missed isJustFields parameter", function(done) {
+      return mongo.getSingle("test", {
+        name: "baio"
+      }, {
+        pass: 1
+      }, function(err, res) {
+        should.not.exist(err);
+        return mongo.updateById("test", res.id, {
+          new_field: 2
+        }, done);
+      });
+    });
     return it("delete by name should be ok", function(done) {
       return mongo.remove("test", {
         name: "baio"

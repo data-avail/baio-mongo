@@ -149,5 +149,10 @@ describe "mongo operations with default aparametrs", ->
         i.pass.should.equal "xxx"
       done()
 
+  it "get / updateById with missed isJustFields parameter", (done)->
+    mongo.getSingle "test", {name : "baio"}, {pass : 1}, (err, res) ->
+      should.not.exist err
+      mongo.updateById "test", res.id, {new_field : 2}, done
+
   it "delete by name should be ok", (done)->
     mongo.remove "test", {name : "baio"}, done

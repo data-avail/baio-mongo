@@ -106,10 +106,16 @@
       function(ck) {
         return open(table, ck);
       }, function(coll, ck) {
+        var updItem;
+        updItem = _.extend({}, item);
+        if (params.opts) {
+          delete updItem.id;
+          delete updItem._id;
+        }
         return coll.update({
           _id: new mongodb.ObjectID(id)
         }, (params.opts ? {
-          $set: item
+          $set: updItem
         } : item), {
           multi: false,
           safe: true,
@@ -146,7 +152,7 @@
       params.opts = true;
     } else {
       params.callback = callback;
-      params.opts = opts;
+      params.opts = opts === false ? false : true;
     }
     return params;
   };

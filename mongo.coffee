@@ -1,4 +1,4 @@
-#Baio-mongo.js 1.0.0
+#Baio-mongo.js 1.0.2
 #
 #http://github.com/data-avail/baio-mongo
 #
@@ -158,7 +158,7 @@ remove = (table, filter, done) ->
 removeById = (table, id, done) ->
   remove table, {_id : new mongodb.ObjectID id}, done
 
-#**updateById (table, id, item, isJustFields, done)**
+#**updateById (table, id, item, [isJustFields], done)**
 #
 # Update particular fields of the item
 #
@@ -166,7 +166,7 @@ removeById = (table, id, done) ->
 #
 #* `table {string}` name of table (collection) to connect to
 #* `id {string}` - id in `string` format
-#* `item {object}` - item's fields to update
+#* `item {object}` - item's fields to update, before update from item will be excluded `id` and `_id` fields
 #* `isJustFields {boolean} (optional)` - if `item` parameter contains real mongodb operation such as $set, $unset, etc then this field should be `false`,
 # if this parameter is just set of fields to upadte then this field should be `true` or `missed`.
 #* `done {function(err)}` - callback function
@@ -176,7 +176,11 @@ updateById = (table, id, item, isJustFields, done) ->
     (ck) ->
       open table, ck
     (coll, ck) ->
-      coll.update {_id : new mongodb.ObjectID id},(if params.opts then {$set : item} else item), {multi : false, safe : true, upsert : false}, (err) ->
+      updItem = _.extend {}, item
+      if params.opts
+        delete updItem.id
+        delete updItem._id
+      coll.update {_id : new mongodb.ObjectID id},(if params.opts then {$set : updItem} else item), {multi : false, safe : true, upsert : false}, (err) ->
         close coll
         ck err
   ], params.callback
@@ -197,7 +201,7 @@ _muteParams2 = (opts, callback) =>
     params.opts = true
   else
     params.callback = callback
-    params.opts = opts
+    params.opts = if opts == false then false else true
   params
 
 _muteParams3 = (obj, opts, callback) =>
