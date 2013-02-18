@@ -1,6 +1,6 @@
 { "name": "baio-mongo"
     , "description": "Little helper library for native nodejs mongodb driver"
-    , "version": "1.0.0"
+    , "version": "1.0.1"
     , "url": "http://github.com/data-avail/baio-mongo"
     , "author": "Max Putilov <max.putilov@gmail.com>"
     ,"keywords": [
