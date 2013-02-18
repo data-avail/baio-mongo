@@ -1,7 +1,7 @@
 baio-mongo
 ----------
 
-[![Build Status](https://travis-ci.org/data-avail/baio-mongo.png)](https://travis-ci.org/data-avail/baio-mongo.png)
+[![Build Status](https://travis-ci.org/data-avail/baio-mongo.png?branch=master)](https://travis-ci.org/data-avail/baio-mongo)
 
 2013 Max Putilov, Data-Avail
 
