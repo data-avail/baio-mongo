@@ -18,4 +18,4 @@ Open connection -> Single CRUD operation -> Close connection.
 npm install baio-mongo
 
 ###Tests###
-mocha mongo.test --ignore-leaks -t 5s
+npm test
