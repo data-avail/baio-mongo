@@ -1,6 +1,8 @@
 baio-mongo
 ----------
 
+[![Build Status](https://travis-ci.org/data-avail/baio-mongo.png)](https://travis-ci.org/data-avail/baio-mongo.png)
+
 2013 Max Putilov, Data-Avail
 
 Baio-mongo may be freely distributed under the MIT license.
