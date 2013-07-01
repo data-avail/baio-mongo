@@ -269,6 +269,8 @@ exports.getById = getById
 exports.remove = remove
 exports.removeById = removeById
 exports.updateById = updateById
+exports.open = open
+exports.close = close
 
 
 
